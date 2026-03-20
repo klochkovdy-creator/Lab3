@@ -55,11 +55,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="CircleCreator.cs" />
+    <Compile Include="BlueFactory.cs" />
+    <Compile Include="GreenFactory.cs" />
+    <Compile Include="IFigureFactory.cs" />
+    <Compile Include="RedFactory.cs" />
     <Compile Include="Square.cs" />
-    <Compile Include="SquareCreator.cs" />
     <Compile Include="Triangle.cs" />
-    <Compile Include="TriangleCreator.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
