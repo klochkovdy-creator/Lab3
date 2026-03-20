@@ -5,8 +5,6 @@ namespace WpfApp2
 {
     public partial class MainWindow : Window
     {
-        private IFigureFactory currentFactory;
-
         public MainWindow()
         {
             InitializeComponent();
@@ -15,35 +13,14 @@ namespace WpfApp2
             colorComboBox.Items.Add(new ComboBoxItem { Content = "Green" });
             colorComboBox.Items.Add(new ComboBoxItem { Content = "Blue" });
 
-            colorComboBox.SelectedIndex = 0;
-            currentFactory = new RedFactory();
+            colorComboBox.SelectedIndex = 0;   
 
-            UpdateShapes();
+            UpdateShapes(); 
         }
 
         private void ColorComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (colorComboBox.SelectedItem is ComboBoxItem selectedItem)
-            {
-                string color = selectedItem.Content.ToString();
-
-                switch (color)
-                {
-                    case "Red":
-                        currentFactory = new RedFactory();
-                        break;
-                    case "Green":
-                        currentFactory = new GreenFactory();
-                        break;
-                    case "Blue":
-                        currentFactory = new BlueFactory();
-                        break;
-                    default:
-                        return;
-                }
-
-                UpdateShapes();
-            }
+            UpdateShapes();
         }
 
         private void UpdateShapes()
@@ -52,9 +29,39 @@ namespace WpfApp2
 
             shapesPanel.Children.Clear();
 
-            shapesPanel.Children.Add(currentFactory.CreateCircle().CreateUIElement(80));
-            shapesPanel.Children.Add(currentFactory.CreateSquare().CreateUIElement(80));
-            shapesPanel.Children.Add(currentFactory.CreateTriangle().CreateUIElement(80));
+            if (colorComboBox.SelectedItem is ComboBoxItem selectedItem)
+            {
+                string color = selectedItem.Content.ToString();
+
+                CircleCreator circleCreator;
+                SquareCreator squareCreator;
+                TriangleCreator triangleCreator;
+
+                switch (color)
+                {
+                    case "Red":
+                        circleCreator = new RedCircleCreator();
+                        squareCreator = new RedSquareCreator();
+                        triangleCreator = new RedTriangleCreator();
+                        break;
+                    case "Green":
+                        circleCreator = new GreenCircleCreator();
+                        squareCreator = new GreenSquareCreator();
+                        triangleCreator = new GreenTriangleCreator();
+                        break;
+                    case "Blue":
+                        circleCreator = new BlueCircleCreator();
+                        squareCreator = new BlueSquareCreator();
+                        triangleCreator = new BlueTriangleCreator();
+                        break;
+                    default:
+                        return;
+                }
+
+                shapesPanel.Children.Add(circleCreator.CreateCircle().CreateUIElement(80));
+                shapesPanel.Children.Add(squareCreator.CreateSquare().CreateUIElement(80));
+                shapesPanel.Children.Add(triangleCreator.CreateTriangle().CreateUIElement(80));
+            }
         }
     }
 }
