@@ -22,3 +22,4 @@
                     VerticalAlignment="Center"/>
     </Grid>
 </Window>
+<!-- === ЭТАП 1. Паттерн Фабричный метод === -->

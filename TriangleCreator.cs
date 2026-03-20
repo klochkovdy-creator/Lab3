@@ -1,5 +1,5 @@
 ﻿using System.Windows.Media;
-
+// === ЭТАП 1. Паттерн Фабричный метод ===
 public abstract class TriangleCreator
 {
     public abstract Triangle CreateTriangle();

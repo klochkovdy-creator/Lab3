@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-
+// === ЭТАП 1. Паттерн Фабричный метод ===
 namespace WpfApp2
 {
     public partial class MainWindow : Window
